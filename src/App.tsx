@@ -3,9 +3,9 @@ import { MainPage } from "./components/page/MainPage";
 
 function App() {
   return (
-    <>
-      <MainPage></MainPage>
-    </>
+    <div className="h-screen">
+      <MainPage />
+    </div>
   );
 }
 
