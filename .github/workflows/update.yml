@@ -3,6 +3,7 @@ name: Github Contributions Data Update
 on:
   schedule:
     - cron: "0 */2 * * *"
+  workflow_dispatch:
 
 jobs:
   update-contributions:
