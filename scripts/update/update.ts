@@ -42,6 +42,8 @@ const response = await fetch("https://api.github.com/graphql", {
 
 const data: GraphQLResponse = await response.json();
 
+console.log(data);
+
 const contributions: Contributions = {
   items:
     data.data.viewer.contributionsCollection.commitContributionsByRepository.flatMap(
@@ -54,7 +56,7 @@ const contributions: Contributions = {
     ),
 };
 
-console.log(data);
+// await fs.writeFile("debug/reponse.json", JSON.stringify(response, null, 2));
 
 await fs.writeFile(
   "src/data/contributions.json",
