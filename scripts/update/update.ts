@@ -9,7 +9,7 @@ if (!token) {
 
 const CONTRIBUTIONS = `
 contributionsCollection {
-  commitContributionsByRepository(maxRepositories: 20) {
+  commitContributionsByRepository(maxRepositories: 5) {
     repository {
       name
     }
