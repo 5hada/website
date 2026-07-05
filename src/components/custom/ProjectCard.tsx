@@ -27,10 +27,12 @@ export type ProjectCardProps = {
 function ProjectRow({ name, href, desc }: ProjectRowProps) {
   return (
     <Card className="w-full">
-      <CardContent className="flex flex-row h-fit w-fit px-3 py-1">
+      <CardContent className="flex flex-row h-fit w-full px-3 py-1">
         <span>{name}</span>
         <span>{desc ? desc : ""}</span>
-        <IconLink href={href}></IconLink>
+        <div className="flex-1 flex flex-row justify-end">
+          <IconLink href={href}></IconLink>
+        </div>
       </CardContent>
     </Card>
   );
@@ -49,11 +51,18 @@ function ProjectContent({ value, rows }: Omit<ProjectTabProps, "icon">) {
 export function ProjectCard({ tabs }: ProjectCardProps) {
   return (
     <Card className="size-full items-start">
-      <Tabs orientation="vertical">
-        <TabsList>
+      <Tabs
+        orientation="vertical"
+        defaultValue="pastel"
+        className="size-full flex flex-row"
+      >
+        <TabsList className="w-12">
           {tabs?.map((tab) => (
-            <TabsTrigger value={tab.value} className="w-8 h-8 rounded-4xl">
-              {tab.icon}
+            <TabsTrigger
+              value={tab.value}
+              className="w-full aspect-square rounded-2xl flex flex-col justify-center pt-2"
+            >
+              <div>{tab.icon}</div>
             </TabsTrigger>
           ))}
         </TabsList>

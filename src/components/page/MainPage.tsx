@@ -1,14 +1,5 @@
-import {
-  Card,
-  CardContent,
-  IconLink,
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-  TextLink,
-} from "../ui";
-import { CommitsTable, ProjectCard } from "../custom";
+import { Card, CardContent, IconLink, TextLink } from "../ui";
+import { ProjectCard, type ProjectCardProps } from "../custom";
 import {
   IconBrandDiscord,
   IconBrandGithub,
@@ -16,6 +7,46 @@ import {
   IconMail,
   IconPin,
 } from "@tabler/icons-react";
+import { ActivityCard, type ActivityCardProps } from "../custom/ActivityCard";
+
+const tempProjectData: ProjectCardProps = {
+  tabs: [
+    {
+      value: "all",
+      icon: "A",
+      rows: [
+        { name: "5hada/Website", href: "https://github.com/5hada/website" },
+      ],
+    },
+  ],
+};
+
+const tempActivityData: ActivityCardProps = {
+  tabs: [
+    {
+      value: "Contributions",
+      icon: "none",
+      rows: [
+        { title: "Preparing...", desc: "" },
+        // { title: "title", desc: "desc" },
+        // { title: "title", desc: "desc" },
+        // { title: "title", desc: "desc" },
+        // { title: "title", desc: "desc" },
+        // { title: "title", desc: "desc" },
+      ],
+    },
+    {
+      value: "Artworks",
+      icon: "none",
+      rows: [
+        { title: "Preparing...", desc: "" },
+        // { title: "title", desc: "desc" },
+        // { title: "title", desc: "desc" },
+        // { title: "title", desc: "desc" },
+      ],
+    },
+  ],
+};
 
 function Header() {
   return (
@@ -55,21 +86,10 @@ function Content() {
     <main className="flex-1 w-full">
       <div className="h-full flex flex-col sm:flex-row pb-4 gap-4 sm:gap-6 md:gap-8 m-4">
         <section className="flex-1">
-          <ProjectCard />
+          <ProjectCard {...tempProjectData} />
         </section>
         <section className="flex-1">
-          <Tabs>
-            <TabsList>
-              <TabsTrigger value="commits">Contributes</TabsTrigger>
-              <TabsTrigger value="artworks">Artworks</TabsTrigger>
-            </TabsList>
-            <TabsContent value="commits">
-              <CommitsTable />
-            </TabsContent>
-            <TabsContent value="artworks">
-              <p>Preparing...</p>
-            </TabsContent>
-          </Tabs>
+          <ActivityCard {...tempActivityData} />
         </section>
       </div>
     </main>
