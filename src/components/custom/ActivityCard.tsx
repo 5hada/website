@@ -1,29 +1,26 @@
+import { IconClockHour4 } from "@tabler/icons-react";
 import { Card, Tabs, TabsContent, TabsList, TabsTrigger } from "../ui";
+import type {
+  ActivityCardProps,
+  ActivityRowProps,
+  ActivityTabProps,
+} from "@/data";
 
-export type ActivityType = "Contributions" | "Artworks";
-
-export type ActivityRowProps = {
-  title: string;
-  desc: string;
-};
-
-export type ActivityTabProps = {
-  value: ActivityType;
-  icon: string;
-  rows?: ActivityRowProps[];
-};
-
-export type ActivityCardProps = {
-  tabs?: ActivityTabProps[];
-};
-
-export function ActivityRow({ title, desc }: ActivityRowProps) {
+export function ActivityRow({ title, count, date }: ActivityRowProps) {
   return (
-    <Card className="w-full h-16">
-      <div className="flex flex-row">
-        <div className="flex flex-col">
-          <span className="text-lg">{title}</span>
-          <span>{desc}</span>
+    <Card className="w-full h-18">
+      <div className="w-full flex flex-col items-start px-4 gap-0.5">
+        <span className="text-lg">{title}</span>
+        <div className="w-full flex flex-row justify-between">
+          {count == 0 ? (
+            ""
+          ) : (
+            <div className="flex flex-row items-center gap-2">
+              <IconClockHour4 className="mt-0.5" size={16} />
+              <span className="text-sm">{count} times</span>
+            </div>
+          )}
+          <span className="text-sm">{date}</span>
         </div>
       </div>
     </Card>

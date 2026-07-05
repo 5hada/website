@@ -7,22 +7,11 @@ import {
   TabsList,
   IconLink,
 } from "../ui";
-
-export type ProjectRowProps = {
-  name: string;
-  href?: string;
-  desc?: string;
-};
-
-export type ProjectTabProps = {
-  icon: string;
-  value: string;
-  rows?: ProjectRowProps[];
-};
-
-export type ProjectCardProps = {
-  tabs?: ProjectTabProps[];
-};
+import type {
+  ProjectCardProps,
+  ProjectRowProps,
+  ProjectTabProps,
+} from "@/data/types";
 
 function ProjectRow({ name, href, desc }: ProjectRowProps) {
   return (
@@ -53,7 +42,7 @@ export function ProjectCard({ tabs }: ProjectCardProps) {
     <Card className="size-full items-start">
       <Tabs
         orientation="vertical"
-        defaultValue="pastel"
+        defaultValue="all"
         className="size-full flex flex-row"
       >
         <TabsList className="w-12">

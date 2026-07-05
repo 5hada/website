@@ -1,0 +1,61 @@
+import "dotenv/config";
+import fs from "node:fs/promises";
+import type { Contributions, GraphQLResponse } from "./types";
+
+const token = process.env.GITHUB_TOKEN;
+
+if (!token) {
+  throw new Error("GITHUB_TOKEN is not set.");
+}
+
+const CONTRIBUTIONS = `
+contributionsCollection {
+  commitContributionsByRepository(maxRepositories: 20) {
+    repository {
+      name
+    }
+    contributions(first: 1) {
+      nodes {
+        commitCount
+        occurredAt
+      }
+    }
+  }
+}
+`;
+
+const query = `
+query {
+  viewer {
+    ${CONTRIBUTIONS}
+  }
+}
+`;
+
+const response = await fetch("https://api.github.com/graphql", {
+  method: "POST",
+  headers: {
+    Authorization: `Bearer ${token}`,
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({ query }),
+});
+
+const data: GraphQLResponse = await response.json();
+
+const contributions: Contributions = {
+  items:
+    data.data.viewer.contributionsCollection.commitContributionsByRepository.flatMap(
+      (repo) =>
+        repo.contributions.nodes.map((node) => ({
+          repo: repo.repository.name,
+          commitCount: node.commitCount,
+          date: node.occurredAt,
+        })),
+    ),
+};
+
+await fs.writeFile(
+  "src/data/contributions.json",
+  JSON.stringify(contributions, null, 2),
+);

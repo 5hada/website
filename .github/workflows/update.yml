@@ -1,0 +1,17 @@
+name: Github Contributions Data Update
+
+on:
+  schedule:
+    - cron: "0 */2 * * *"
+
+jobs:
+  update-contributions:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Update data
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx tsx scripts/update/update.ts
