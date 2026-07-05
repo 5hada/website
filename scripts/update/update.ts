@@ -9,7 +9,7 @@ if (!token) {
 
 const CONTRIBUTIONS = `
 contributionsCollection {
-  commitContributionsByRepository(maxRepositories: 5) {
+  commitContributionsByRepository(maxRepositories: 100) {
     repository {
       name
     }
@@ -55,14 +55,16 @@ if (!response.ok || data.errors) {
 
 const contributions: Contributions = {
   items: data.data
-    ? data.data.user.contributionsCollection.commitContributionsByRepository.flatMap(
-        (repo) =>
+    ? data.data.user.contributionsCollection.commitContributionsByRepository
+        .flatMap((repo) =>
           repo.contributions.nodes.map((node) => ({
             repo: repo.repository.name,
             commitCount: node.commitCount,
             date: node.occurredAt,
           })),
-      )
+        )
+        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+        .slice(0, 5)
     : [{ repo: "null", commitCount: 0, date: "" }],
 };
 
