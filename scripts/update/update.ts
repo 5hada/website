@@ -54,6 +54,8 @@ const contributions: Contributions = {
     ),
 };
 
+console.log(data);
+
 await fs.writeFile(
   "src/data/contributions.json",
   JSON.stringify(contributions, null, 2),
