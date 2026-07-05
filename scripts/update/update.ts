@@ -55,7 +55,7 @@ if (!response.ok || data.errors) {
 
 const contributions: Contributions = {
   items: data.data
-    ? data.data.viewer.contributionsCollection.commitContributionsByRepository.flatMap(
+    ? data.data.user.contributionsCollection.commitContributionsByRepository.flatMap(
         (repo) =>
           repo.contributions.nodes.map((node) => ({
             repo: repo.repository.name,

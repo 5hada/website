@@ -1,6 +1,6 @@
 export type GraphQLResponse = {
   data?: {
-    viewer: {
+    user: {
       contributionsCollection: {
         commitContributionsByRepository: {
           repository: {
