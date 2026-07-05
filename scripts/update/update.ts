@@ -32,7 +32,6 @@ query {
 `;
 
 const response = await fetch("https://api.github.com/graphql", {
-  method: "POST",
   headers: {
     Authorization: `Bearer ${token}`,
     "Content-Type": "application/json",
