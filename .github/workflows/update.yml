@@ -14,4 +14,9 @@ jobs:
       - name: Update data
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npx tsx scripts/update/update.ts
+        run: |
+          npx tsx scripts/update/update.ts
+
+          git diff --cached --quiet || git commit -m "Update contributions"
+
+          git push
