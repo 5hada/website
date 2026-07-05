@@ -24,3 +24,5 @@ dist-ssr
 *.sw?
 
 .env
+.gqlnb
+.github/workflows/Untitled-1.gqlnb

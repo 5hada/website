@@ -9,7 +9,7 @@ if (!token) {
 
 const CONTRIBUTIONS = `
 contributionsCollection {
-  commitContributionsByRepository(maxRepositories: 20) {
+  commitContributionsByRepository(maxRepositories: 5) {
     repository {
       name
     }
@@ -24,8 +24,8 @@ contributionsCollection {
 `;
 
 const query = `
-query {
-  viewer {
+query($login: String!) {
+  user(login: $login) {
     ${CONTRIBUTIONS}
   }
 }
@@ -37,22 +37,36 @@ const response = await fetch("https://api.github.com/graphql", {
     Authorization: `Bearer ${token}`,
     "Content-Type": "application/json",
   },
-  body: JSON.stringify({ query }),
+  body: JSON.stringify({
+    query,
+    variables: {
+      login: "5hada",
+    },
+  }),
 });
 
 const data: GraphQLResponse = await response.json();
 
+if (!response.ok || data.errors) {
+  console.error("status:", response.status);
+  console.error("response:", JSON.stringify(data, null, 2));
+  throw new Error("GitHub GraphQL request failed");
+}
+
 const contributions: Contributions = {
-  items:
-    data.data.viewer.contributionsCollection.commitContributionsByRepository.flatMap(
-      (repo) =>
-        repo.contributions.nodes.map((node) => ({
-          repo: repo.repository.name,
-          commitCount: node.commitCount,
-          date: node.occurredAt,
-        })),
-    ),
+  items: data.data
+    ? data.data.user.contributionsCollection.commitContributionsByRepository.flatMap(
+        (repo) =>
+          repo.contributions.nodes.map((node) => ({
+            repo: repo.repository.name,
+            commitCount: node.commitCount,
+            date: node.occurredAt,
+          })),
+      )
+    : [{ repo: "null", commitCount: 0, date: "" }],
 };
+
+// await fs.writeFile("debug/reponse.json", JSON.stringify(response, null, 2));
 
 await fs.writeFile(
   "src/data/contributions.json",
