@@ -42,7 +42,11 @@ const response = await fetch("https://api.github.com/graphql", {
 
 const data: GraphQLResponse = await response.json();
 
-console.log(data);
+if (!response.ok) {
+  console.error("status:", response.status);
+  console.error("response:", JSON.stringify(data, null, 2));
+  throw new Error("GitHub GraphQL request failed");
+}
 
 const contributions: Contributions = {
   items:
