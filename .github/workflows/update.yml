@@ -21,6 +21,13 @@ jobs:
         run: |
           npx tsx scripts/update/update.ts
 
-          git diff --cached --quiet || git commit -m "Update contributions"
+      - name: Git Push
+        run: |
+          git config user.name "github-actions[activity-updater]"
+          git config user.email "bot@shada.me"
 
+          git add .
+          git diff --cached --quiet && exit 0
+
+          git commit -m "chore: update data"
           git push
