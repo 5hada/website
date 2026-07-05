@@ -1,0 +1,17 @@
+query ($login: String!) {
+  user(login: $login) {
+    contributionsCollection {
+      commitContributionsByRepository(maxRepositories: 5) {
+        repository {
+          name
+        }
+        contributions(first: 1) {
+          nodes {
+            commitCount
+            occurredAt
+          }
+        }
+      }
+    }
+  }
+}

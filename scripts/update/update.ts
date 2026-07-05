@@ -24,19 +24,25 @@ contributionsCollection {
 `;
 
 const query = `
-query {
-  viewer {
+query($login: String!) {
+  user(login: $login) {
     ${CONTRIBUTIONS}
   }
 }
 `;
 
 const response = await fetch("https://api.github.com/graphql", {
+  method: "POST",
   headers: {
     Authorization: `Bearer ${token}`,
     "Content-Type": "application/json",
   },
-  body: JSON.stringify({ query }),
+  body: JSON.stringify({
+    query,
+    variables: {
+      login: "5hada",
+    },
+  }),
 });
 
 const data: GraphQLResponse = await response.json();
