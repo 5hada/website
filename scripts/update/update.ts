@@ -1,4 +1,3 @@
-import "dotenv/config";
 import fs from "node:fs/promises";
 import type { Contributions, GraphQLResponse } from "./types";
 
