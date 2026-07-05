@@ -5,10 +5,10 @@ export const activityCardData: ActivityCardProps = {
   tabs: [
     {
       value: "Contributions",
-      rows: contributions.flatMap((contribution) => ({
+      rows: contributions.items.flatMap((contribution) => ({
         title: contribution.repo,
         date: contribution.date,
-        count: contribution.count,
+        count: contribution.commitCount,
       })),
     },
     {
