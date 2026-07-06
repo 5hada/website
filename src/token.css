@@ -1,9 +1,22 @@
 @theme {
-  --base: oklch(1 0 0);
-  --background: oklch(1 0 0);
-  --background-layer1: oklch(1 0 0);
-  --background-layer2: oklch(1 0 0);
-  --background-layer3: oklch(1 0 0);
+  --bg-base: oklch(1 0 0);
+  --bg: oklch(1 0 0);
+  --bg-1: oklch(1 0 0);
+  --bg-2: oklch(1 0 0);
+  --bg-3: oklch(1 0 0);
+
+  --primary: oklch(12 12 12);
+  --secondary: oklch(12 12 12);
+  --alert: oklch(12 12 12);
+  --outline: oklch(12 12 12);
+  --ghost: oklch(12 12 12);
+
+  --default-text: oklch(10 10 10);
+  --primary-text: oklch(12 12 12);
+  --secondary-text: oklch(12 12 12);
+  --alert-text: oklch(12 12 12);
+  --outline-text: oklch(12 12 12);
+  --ghost-text: oklch(12 12 12);
 
   --rad-sm: 0.375rem;
   --rad-md: 0.75rem;
@@ -14,6 +27,6 @@
   --gap-section: 4rem;
   --gap-card: 1rem;
 
-  --pad-page: 2rem;
-  --pad-card: 1rem;
+  --pad-page: 4rem;
+  --pad-card: 4rem;
 }
