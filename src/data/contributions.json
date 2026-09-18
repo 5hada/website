@@ -1,6 +1,11 @@
 {
   "items": [
     {
+      "repo": "Algorithm",
+      "commitCount": 1,
+      "date": "2026-09-15T07:00:00Z"
+    },
+    {
       "repo": "AssetManager",
       "commitCount": 5,
       "date": "2026-08-10T07:00:00Z"
@@ -19,11 +24,6 @@
       "repo": "website",
       "commitCount": 2,
       "date": "2026-07-07T07:00:00Z"
-    },
-    {
-      "repo": "Widgets",
-      "commitCount": 3,
-      "date": "2026-07-03T07:00:00Z"
     }
   ]
 }
