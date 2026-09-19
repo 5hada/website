@@ -1,6 +1,11 @@
 {
   "items": [
     {
+      "repo": "5hada",
+      "commitCount": 1,
+      "date": "2026-09-19T07:00:00Z"
+    },
+    {
       "repo": "Algorithm",
       "commitCount": 1,
       "date": "2026-09-15T07:00:00Z"
@@ -14,11 +19,6 @@
       "repo": "NodeCanvas",
       "commitCount": 1,
       "date": "2026-07-19T07:00:00Z"
-    },
-    {
-      "repo": "5hada",
-      "commitCount": 5,
-      "date": "2026-07-14T07:00:00Z"
     },
     {
       "repo": "website",
